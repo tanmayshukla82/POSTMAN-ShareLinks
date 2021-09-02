@@ -41,7 +41,7 @@ router.post('/api/files',(req,res)=>{
 
               const response = await uploadFile.save();
               
-             return res.send({file : `${process.env.APP_BASE_URL}/files/${response.uuid}`});
+             return res.send({file : `${process.env.APP_BASE_URL}files/${response.uuid}`});
         })
   
     // 4>response
