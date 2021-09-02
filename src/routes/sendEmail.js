@@ -4,7 +4,7 @@ const File = require('../models/file');
 const sendMail = require('../services/emailService');
 
 router.post('/api/file/send',async(req,res)=>{
-    
+    try {
         const json = req.body;
         if(!json.uuid||!json.fromEmail || !json.toEmail)
         {
@@ -31,6 +31,10 @@ router.post('/api/file/send',async(req,res)=>{
             })
         });
         return res.send('Email sent successfully.')
+    } catch (err) {
+        res.send({error : "Something Went wrong."})
+    }
+       
 });
 
 
