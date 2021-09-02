@@ -11,11 +11,16 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 connectDB();
 
-const corsOptions = {
-    origin:process.env.ALLOWED_CLIENT.split(',')
-} 
+// const corsOptions = {
+//     origin:process.env.ALLOWED_CLIENT.split(',')
+// } 
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
 app.use(express.static('public'));
